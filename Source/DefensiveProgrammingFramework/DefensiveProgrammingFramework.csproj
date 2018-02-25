@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <DebugType>full</DebugType>
+        <CodeAnalysisRuleSet>..\stylecop.ruleset</CodeAnalysisRuleSet>
+        <Copyright></Copyright>
+        <Description>The defensive programming framework helping programmers to easily validate method input.</Description>
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>key.pfx</AssemblyOriginatorKeyFile>
+        <PackageProjectUrl>https://github.com/aljazsim/defensive-programming-framework-for-net/</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/aljazsim/defensive-programming-framework-for-net.git</RepositoryUrl>
+        <RepositoryType>GIT</RepositoryType>
+        <AssemblyVersion>1.0.0.1</AssemblyVersion>
+        <FileVersion>1.0.0.1</FileVersion>
+        <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+        <PackageTags>Validation, Defensive programming</PackageTags>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.0" />
+        <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
+    </ItemGroup>
+
+</Project>

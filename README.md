@@ -146,10 +146,10 @@ Conditions can be chained together:
  
  ```csharp
 filePath = filePath.CannotBeNullOrEmpty() // file path must be specified
-					   .CannotBe(x => filePath.Intersect(Path.GetInvalidFileNameChars()).Any()) // file path must be a valid
+                    .CannotBe(x => filePath.Intersect(Path.GetInvalidFileNameChars()).Any()) // file path must be a valid
                     .MustBe(x => File.Exists(x)) // file must exist
                     .MustBe(x => Path.GetExtension(x) == ".pdf") // file must be a PDF file
-	                .WhenIs(x => Path.GetFullPath(x) != x, Path.GetFullPath(x)); // convert file path to an absolute file path
+	                .WhenIs(x => Path.GetFullPath(x) != x, Path.GetFullPath(filePath)); // convert file path to an absolute file path
 
 // now you can be certain that everyting is in order
 ```

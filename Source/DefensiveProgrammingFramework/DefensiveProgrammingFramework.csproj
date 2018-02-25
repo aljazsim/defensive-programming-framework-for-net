@@ -11,10 +11,12 @@
         <PackageProjectUrl>https://github.com/aljazsim/defensive-programming-framework-for-net/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/aljazsim/defensive-programming-framework-for-net.git</RepositoryUrl>
         <RepositoryType>GIT</RepositoryType>
-        <AssemblyVersion>1.0.0.1</AssemblyVersion>
-        <FileVersion>1.0.0.1</FileVersion>
+        <AssemblyVersion>1.0.1.1</AssemblyVersion>
+        <FileVersion>1.0.1.1</FileVersion>
         <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
         <PackageTags>Validation, Defensive programming</PackageTags>
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+        <Version>1.0.1</Version>
     </PropertyGroup>
 
     <ItemGroup>

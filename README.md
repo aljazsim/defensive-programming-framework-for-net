@@ -1,3 +1,4 @@
+
 # Defensive programming framework for .NET Framework
 
 Defensive programing is a programming style that practices thorough validation of method input parameters resulting in robust code that allows method execution only in case of valid input or terminates it otherwise. 
@@ -92,6 +93,9 @@ minValue.MustBeEqualTo(3);
 text.MustMatch(new Regex("^[0-9]+$"));
 index.MustBeGreaterThanOrEqualTo(100);
 filePath.MustBe(x => File.Exists(x));
+filePath.MustBeValidFilePath();
+directoryPath.MustBeAbsoluteDirectoryPath();
+file.MustFileExist();
 ```
 ### Cannot conditions
 Cannot conditions specify that the result of the condition must be invalid or false, otherwise execution will terminate.
@@ -140,6 +144,7 @@ Example:
 path = path.WhenIsNot(x => x.Trim() == x, path.Trim());
 text = text.WhenDoesNotMatch(new Regex("^[0-9]$"), "0");
 letter = letter.WhenIsNotOneOf(new string[] { "a", "b", "c" }, "a");
+filePath.WhenIsNotAbsoluteFilePath(Path.GetFullPath(filePath));
 ```
 ## Combining conditions
 Conditions can be chained together:

@@ -58,6 +58,12 @@
     <Compile Include="Collections\CannotExtensionsTest.cs" />
     <Compile Include="Collections\IsNotTestExtensionsTest.cs" />
     <Compile Include="Collections\IsExtensionsTest.cs" />
+    <Compile Include="File\WhenNotExtensionsTest.cs" />
+    <Compile Include="File\WhenExtensionsTest.cs" />
+    <Compile Include="File\MustExtensionsTest.cs" />
+    <Compile Include="File\CannotExtensionsTest.cs" />
+    <Compile Include="File\IsNotExtensionsTest.cs" />
+    <Compile Include="File\IsExtensionsTest.cs" />
     <Compile Include="FrameworkTest.cs" />
     <Compile Include="Objects\WhenNotExtensionsTest.cs" />
     <Compile Include="Objects\WhenExtensionsTest.cs" />

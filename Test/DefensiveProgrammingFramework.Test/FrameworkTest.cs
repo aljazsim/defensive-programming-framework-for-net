@@ -13,6 +13,7 @@ namespace DefensiveProgrammingFramework.Test
 
         [DataRow(typeof(ObjectIsExtensions), typeof(ObjectIsNotExtensions), typeof(ObjectCannotExtensions), typeof(ObjectMustExtensions), typeof(ObjectWhenExtensions), typeof(ObjectWhenNotExtensions), new string[] { "Is=>Be", "Does=>" })]
         [DataRow(typeof(CollectionIsExtensions), typeof(CollectionIsNotExtensions), typeof(CollectionCannotExtensions), typeof(CollectionMustExtensions), typeof(CollectionWhenExtensions), typeof(CollectionWhenNotExtensions), new string[] { "Is=>Be", "Contains=>Contain" })]
+        [DataRow(typeof(FileIsExtensions), typeof(FileIsNotExtensions), typeof(FileCannotExtensions), typeof(FileMustExtensions), typeof(FileWhenExtensions), typeof(FileWhenNotExtensions), new string[] { "Is=>Be", "Does=>" })]
         [DataTestMethod]
         public void TestNamingConvention(Type isExtensions, Type isNotExtensions, Type cannotExtensions, Type mustExtensions, Type whenExtensions, Type whenNotExtensions, string[] prefixes)
         {

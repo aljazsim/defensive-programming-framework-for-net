@@ -48,6 +48,23 @@ namespace DefensiveProgrammingFramework
         }
 
         /// <summary>
+        /// Returns original value if the specified value is not an empty directory path; otherwise throws a new ArgumentException.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>
+        /// The original value if the specified value is not an empty directory path; otherwise throws a new ArgumentException.
+        /// </returns>
+        public static string CannotBeEmptyDirectory(this string value)
+        {
+            if (value.IsEmptyDirectory())
+            {
+                throw new ArgumentException("Value cannot be an empty directory.");
+            }
+
+            return value;
+        }
+
+        /// <summary>
         /// Returns original value if the specified value isn't a valid directory path; otherwise throws a new ArgumentException.
         /// </summary>
         /// <param name="value">The value.</param>

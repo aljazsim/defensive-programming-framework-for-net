@@ -9,6 +9,65 @@ namespace DefensiveProgrammingFramework.Test.Files
     {
         #region Public Methods
 
+        [TestMethod]
+        public void MustBeEmptyDirectory()
+        {
+            string directoryPath = @".\Tmp5";
+
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+
+            Assert.AreEqual(directoryPath, directoryPath.MustBeEmptyDirectory());
+
+            Directory.Delete(directoryPath);
+        }
+
+        [TestMethod]
+        public void MustBeEmptyDirectoryFail()
+        {
+            string directoryPath = @".\Tmp5";
+            string filePath = Path.Combine(directoryPath, "tmp.txt");
+
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+                File.WriteAllText(filePath, "text");
+            }
+
+            try
+            {
+                directoryPath.MustBeEmptyDirectory();
+
+                Assert.Fail();
+            }
+            catch (ArgumentException ex)
+            {
+                Assert.AreEqual("Value must be an empty directory.", ex.Message);
+            }
+
+            File.Delete(filePath);
+            Directory.Delete(directoryPath);
+        }
+
+        [TestMethod]
+        public void MustBeEmptyDirectoryFail2()
+        {
+            string directoryPath = @".\Tmp5<";
+
+            try
+            {
+                directoryPath.MustBeEmptyDirectory();
+
+                Assert.Fail();
+            }
+            catch (ArgumentException ex)
+            {
+                Assert.AreEqual("Value must be a valid directory path.", ex.Message);
+            }
+        }
+
         [DataRow(@"c:\")]
         [DataRow(@"c:\apps\MyApp\bin\Debug")]
         [DataRow(@"d:\apps\MyApp\bin\Debug")]

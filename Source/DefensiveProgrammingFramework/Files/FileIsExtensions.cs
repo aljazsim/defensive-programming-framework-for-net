@@ -86,6 +86,39 @@ namespace DefensiveProgrammingFramework
         }
 
         /// <summary>
+        /// Determines whether specified direcory is empty.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>
+        ///   <c>true</c> if specified direcory is empty; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsEmptyDirectory(this string value)
+        {
+            if (value == null)
+            {
+                return true;
+            }
+            else if (string.IsNullOrEmpty(value))
+            {
+                return false;
+            }
+            else
+            {
+                value.MustBeValidDirectoryPath();
+
+                if (value.DoesDirectoryExist())
+                {
+                    return !Directory.GetDirectories(value, "*", SearchOption.AllDirectories).Any() &&
+                           !Directory.GetFiles(value, "*", SearchOption.AllDirectories).Any();
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+
+        /// <summary>
         /// Determines whether the specified value is a valid directory path.
         /// </summary>
         /// <param name="value">The value.</param>

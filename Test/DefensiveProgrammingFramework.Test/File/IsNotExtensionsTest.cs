@@ -9,6 +9,27 @@ namespace DefensiveProgrammingFramework.Test.Files
     {
         #region Public Methods
 
+        [TestMethod]
+        public void IsNotEmptyDirectory()
+        {
+            string directoryPath = @".\Tmp5";
+            string filePath = Path.Combine(directoryPath, "tmp.txt");
+
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+
+            Assert.IsFalse(directoryPath.IsNotEmptyDirectory());
+
+            File.WriteAllText(filePath, "text");
+
+            Assert.IsTrue(directoryPath.IsNotEmptyDirectory());
+
+            File.Delete(filePath);
+            Directory.Delete(directoryPath);
+        }
+
         [DataRow(null, !true)]
         [DataRow("", !false)]
         [DataRow("f", !true)]

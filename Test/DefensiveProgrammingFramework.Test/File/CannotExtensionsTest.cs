@@ -96,6 +96,65 @@ namespace DefensiveProgrammingFramework.Test.Files
             }
         }
 
+        [TestMethod]
+        public void CannotBeEmptyDirectory()
+        {
+            string directoryPath = @".\Tmp5";
+            string filePath = Path.Combine(directoryPath, "tmp.txt");
+
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+                File.WriteAllText(filePath, "text");
+            }
+
+            Assert.AreEqual(directoryPath, directoryPath.CannotBeEmptyDirectory());
+
+            File.Delete(filePath);
+            Directory.Delete(directoryPath);
+        }
+
+        [TestMethod]
+        public void CannotBeEmptyDirectoryFail()
+        {
+            string directoryPath = @".\Tmp5";
+
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+
+            try
+            {
+                directoryPath.CannotBeEmptyDirectory();
+
+                Assert.Fail();
+            }
+            catch (ArgumentException ex)
+            {
+                Assert.AreEqual("Value cannot be an empty directory.", ex.Message);
+            }
+
+            Directory.Delete(directoryPath);
+        }
+
+        [TestMethod]
+        public void CannotBeEmptyDirectoryFail2()
+        {
+            string directoryPath = @".\Tmp5<";
+
+            try
+            {
+                directoryPath.CannotBeEmptyDirectory();
+
+                Assert.Fail();
+            }
+            catch (ArgumentException ex)
+            {
+                Assert.AreEqual("Value must be a valid directory path.", ex.Message);
+            }
+        }
+
         [DataRow("")]
         [DataRow("file>1.exe")]
         [DataRow("file|1.ex'")]

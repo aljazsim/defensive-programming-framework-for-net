@@ -86,7 +86,7 @@ namespace DefensiveProgrammingFramework.Test.Files
         [DataTestMethod]
         public void WhenIsAbsoluteFilePath(string filePath, string defaultValue, bool expected)
         {
-            Assert.AreEqual(expected ? defaultValue: filePath, filePath.WhenIsAbsoluteFilePath(defaultValue));
+            Assert.AreEqual(expected ? defaultValue : filePath, filePath.WhenIsAbsoluteFilePath(defaultValue));
         }
 
         [DataRow(@"")]
@@ -104,6 +104,27 @@ namespace DefensiveProgrammingFramework.Test.Files
             {
                 Assert.AreEqual("Value must be a valid file path.", ex.Message);
             }
+        }
+
+        [TestMethod]
+        public void WhenIsEmptyDirectory()
+        {
+            string directoryPath = @".\Tmp5";
+            string filePath = Path.Combine(directoryPath, "tmp.txt");
+
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+
+            Assert.AreEqual("aaa", directoryPath.WhenIsEmptyDirectory("aaa"));
+
+            File.WriteAllText(filePath, "text");
+
+            Assert.AreEqual(directoryPath, directoryPath.WhenIsEmptyDirectory("aaa"));
+
+            File.Delete(filePath);
+            Directory.Delete(directoryPath);
         }
 
         [DataRow(null, "aaa", true)]

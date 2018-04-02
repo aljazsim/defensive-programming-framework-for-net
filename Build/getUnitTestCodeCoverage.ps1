@@ -32,7 +32,7 @@ if (Test-Path "$openCoverReport")
 New-Item -ItemType Directory "$outputDirectory"
 
 Write-Output "`n`n"
-Write-Output "------------------------------------------------------- compilingsolution -------------------------------------------------------"
+Write-Output "------------------------------------------------------- compiling solution -------------------------------------------------------"
 Write-Output "`n"
 
 & "$msbuild"  "$solutionFilePath" /property:Configuration=Release

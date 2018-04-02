@@ -34,6 +34,26 @@ namespace DefensiveProgrammingFramework
         }
 
         /// <summary>
+        /// Returns default value when the specified directory path is not empty; otherwise returns the original value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="defaultValue">The default value.</param>
+        /// <returns>
+        /// The default value when the directory path is not empty; otherwise returns the original value.
+        /// </returns>
+        public static string WhenIsNotEmptyDirectory(this string value, string defaultValue)
+        {
+            if (value.IsNotEmptyDirectory())
+            {
+                return defaultValue;
+            }
+            else
+            {
+                return value;
+            }
+        }
+
+        /// <summary>
         /// Returns default value when the specified file does not exist; otherwise returns the original value.
         /// </summary>
         /// <param name="value">The value.</param>

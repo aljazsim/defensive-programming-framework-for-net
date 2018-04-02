@@ -27,6 +27,27 @@ namespace DefensiveProgrammingFramework.Test.Files
             Assert.AreEqual("aaa", @".\Temp".WhenDoesNotDirectoryExist("aaa"));
         }
 
+        [TestMethod]
+        public void WhenIsNotEmptyDirectory()
+        {
+            string directoryPath = @".\Tmp5";
+            string filePath = Path.Combine(directoryPath, "tmp.txt");
+
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+
+            Assert.AreEqual(directoryPath, directoryPath.WhenIsNotEmptyDirectory("aaa"));
+
+            File.WriteAllText(filePath, "text");
+
+            Assert.AreEqual("aaa", directoryPath.WhenIsNotEmptyDirectory("aaa"));
+
+            File.Delete(filePath);
+            Directory.Delete(directoryPath);
+        }
+
         [DataTestMethod]
         public void WhenDoesNotFileExist()
         {

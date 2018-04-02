@@ -9,7 +9,7 @@ namespace DefensiveProgrammingFramework.Test.Files
     {
         #region Public Methods
 
-        [DataTestMethod]
+        [TestMethod]
         public void DoesDirectoryExist()
         {
             if (!Directory.Exists(@".\Temp"))
@@ -27,7 +27,7 @@ namespace DefensiveProgrammingFramework.Test.Files
             Assert.AreEqual(false, @".\Temp".DoesDirectoryExist());
         }
 
-        [DataTestMethod]
+        [TestMethod]
         public void DoesFileExist()
         {
             if (!File.Exists(@".\Temp.txt"))
@@ -104,6 +104,30 @@ namespace DefensiveProgrammingFramework.Test.Files
             {
                 Assert.AreEqual("Value must be a valid file path.", ex.Message);
             }
+        }
+
+        [TestMethod]
+        public void IsEmptyDirectory()
+        {
+            string directoryPath = @".\Tmp5";
+            string filePath = Path.Combine(directoryPath, "tmp.txt");
+
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+
+            Assert.IsTrue((null as string).IsEmptyDirectory());
+            Assert.IsFalse(string.Empty.IsEmptyDirectory());
+            Assert.IsTrue(@".\aaa".IsEmptyDirectory());
+            Assert.IsTrue(directoryPath.IsEmptyDirectory());
+
+            File.WriteAllText(filePath, "text");
+
+            Assert.IsFalse(directoryPath.IsEmptyDirectory());
+
+            File.Delete(filePath);
+            Directory.Delete(directoryPath);
         }
 
         [DataRow(null, true)]

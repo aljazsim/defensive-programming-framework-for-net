@@ -1,4 +1,5 @@
 
+
 # Defensive programming framework for .NET Framework
 
 Defensive programing is a programming style that practices thorough validation of method input parameters resulting in robust code that allows method execution only in case of valid input or terminates it otherwise. 
@@ -101,12 +102,12 @@ file.MustFileExist();
 Cannot conditions specify that the result of the condition must be invalid or false, otherwise execution will terminate.
 
 Example:
- - value cannot be null,
+- value cannot be null,
 - collection cannot be empty,
--  collection cannot contain null values,
+- collection cannot contain null values,
 - collection cannot contain duplicates,
 - value cannot be belong to a predefined list of values,
--  file path cannot contain invalid characters.
+- file path cannot contain invalid characters.
 
 ```csharp
 url.CannotBeNull();
@@ -186,7 +187,6 @@ url.IsNotNull().Then(() => port.MustBeBetween(IPEndPoint.MinPort, IPEndPoint.Max
 url.StartsWith("http").Then(() => port.MustEqual(443));
 ```
 
-
 ## Naming convention
 All validation methods exist in must, cannot, when, when not, affirmative and negative combination and follow the following naming convention:
 
@@ -196,6 +196,49 @@ All validation methods exist in must, cannot, when, when not, affirmative and ne
  - When not methods start with "When + Condition + Not",
  - Affirmative utility methods start "Is", "Does" or "Contains",
  - Negative utility methods start with "IsNot", "DoesNot" or "ContainsNot".
+ 
+## List of extension methods
+
+### Object extension methods:
+|is|is not|must|cannot|when|when not|
+|--|--|--|--|--|--|
+|DoesMatch|DoesNotMatch|MustMatch|CannotMatch|WhenDoesMatch|WhenDoesNotMatch|
+|Is|IsNot|MustBe|CannotBe|WhenIs|WhenIsNot|
+|IsBetween|IsNotBetween|MustBeBetween|CannotBeBetween|WhenIsBetween|WhenIsNotBetween|
+|IsDefault|IsNotDefault|MustBeDefault|CannotBeDefault|WhenIsDefault|WhenIsNotDefault|
+|IsEqualTo|IsNotEqualTo|MustBeEqualTo|CannotBeEqualTo|WhenIsEqualTo|WhenIsNotEqualTo|
+|IsGreaterThan|IsNotGreaterThan|MustBeGreaterThan|CannotBeGreaterThan|WhenIsGreaterThan|WhenIsNotGreaterThan|
+|IsGreaterThanOrEqualTo|IsNotGreaterThanOrEqualTo|MustBeGreaterThanOrEqualTo|CannotBeGreaterThanOrEqualTo|WhenIsGreaterThanOrEqualTo|WhenIsNotGreaterThanOrEqualTo|
+|IsLessThan|IsNotLessThan|MustBeLessThan|CannotBeLessThan|WhenIsLessThan|WhenIsNotLessThan|
+|IsLessThanOrEqualTo|IsNotLessThanOrEqualTo|MustBeLessThanOrEqualTo|CannotBeLessThanOrEqualTo|WhenIsLessThanOrEqualTo|WhenIsNotLessThanOrEqualTo|
+|IsNull|IsNotNull|MustBeNull|CannotBeNull|WhenIsNull|WhenIsNotNull|
+|IsOneOf|IsNotOneOf|MustBeOneOf|CannotBeOneOf|WhenIsOneOf|WhenIsNotOneOf|
+|IsSubTypeOf|IsNotSubTypeOf|MustBeSubTypeOf|CannotBeSubTypeOf|WhenIsSubTypeOf|WhenIsNotSubTypeOf|
+|IsTypeOf|IsNotTypeOf|MustBeTypeOf|CannotBeTypeOf|WhenIsTypeOf|WhenIsNotTypeOf|
+
+### Collection extension methods:
+|is|is not|must|cannot|when|when not|
+|--|--|--|--|--|--|
+|Contains|ContainsNot|MustContain|CannotContain|WhenContains|WhenContainsNot|
+|ContainsDuplicates|ContainsNotDuplicates|MustContainDuplicates|CannotContainDuplicates|WhenContainsDuplicates|WhenContainsNotDuplicates|
+|ContainsNull|ContainsNotNull|MustContainNull|CannotContainNull|WhenContainsNull|WhenContainsNotNull|
+|ContainsOnlyNull|ContainsNotOnlyNull|MustContainOnlyNull|CannotContainOnlyNull|WhenContainsOnlyNull|WhenContainsNotOnlyNull|
+|IsEmpty|IsNotEmpty|MustBeEmpty|CannotBeEmpty|WhenIsEmpty|WhenIsNotEmpty|
+|IsEqualTo|IsNotEqualTo|MustBeEqualTo|CannotBeEqualTo|WhenIsEqualTo|WhenIsNotEqualTo|
+|IsNullOrEmpty|IsNotNullOrEmpty|MustBeNullOrEmpty|CannotBeNullOrEmpty|WhenIsNullOrEmpty|WhenIsNotNullOrEmpty|
+|IsOneOf|IsNotOneOf|MustBeOneOf|CannotBeOneOf|WhenIsOneOf|WhenIsNotOneOf|
+
+### File system extension methods:
+|is|is not|must|cannot|when|when not|
+|--|--|--|--|--|--|
+|DoesDirectoryExist|DoesNotDirectoryExist|MustDirectoryExist|CannotDirectoryExist|WhenDoesDirectoryExist|WhenDoesNotDirectoryExist|
+|DoesFileExist|DoesNotFileExist|MustFileExist|CannotFileExist|WhenDoesFileExist|WhenDoesNotFileExist|
+|IsAbsoluteDirectoryPath|IsNotAbsoluteDirectoryPath|MustBeAbsoluteDirectoryPath|CannotBeAbsoluteDirectoryPath|WhenIsAbsoluteDirectoryPath|WhenIsNotAbsoluteDirectoryPath|
+|IsAbsoluteFilePath|IsNotAbsoluteFilePath|MustBeAbsoluteFilePath|CannotBeAbsoluteFilePath|WhenIsAbsoluteFilePath|WhenIsNotAbsoluteFilePath|
+|IsEmptyDirectory|IsNotEmptyDirectory|MustBeEmptyDirectory|CannotBeEmptyDirectory|WhenIsEmptyDirectory|WhenIsNotEmptyDirectory|
+|IsValidDirectoryPath|IsNotValidDirectoryPath|MustBeValidDirectoryPath|CannotBeValidDirectoryPath|WhenIsValidDirectoryPath|WhenIsNotValidDirectoryPath|
+|IsValidFileName|IsNotValidFileName|MustBeValidFileName|CannotBeValidFileName|WhenIsValidFileName|WhenIsNotValidFileName|
+|IsValidFilePath|IsNotValidFilePath|MustBeValidFilePath|CannotBeValidFilePath|WhenIsValidFilePath|WhenIsNotValidFilePath|
 
 # Installation
 Run the following command in your Package Manager Console in Visual Studio:

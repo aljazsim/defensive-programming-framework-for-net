@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -11,11 +12,11 @@ namespace DefensiveProgrammingFramework.Test
     {
         #region Public Methods
 
-        [DataRow(typeof(ObjectIsExtensions), typeof(ObjectIsNotExtensions), typeof(ObjectCannotExtensions), typeof(ObjectMustExtensions), typeof(ObjectWhenExtensions), typeof(ObjectWhenNotExtensions), new string[] { "Is=>Be", "Does=>" })]
-        [DataRow(typeof(CollectionIsExtensions), typeof(CollectionIsNotExtensions), typeof(CollectionCannotExtensions), typeof(CollectionMustExtensions), typeof(CollectionWhenExtensions), typeof(CollectionWhenNotExtensions), new string[] { "Is=>Be", "Contains=>Contain" })]
-        [DataRow(typeof(FileIsExtensions), typeof(FileIsNotExtensions), typeof(FileCannotExtensions), typeof(FileMustExtensions), typeof(FileWhenExtensions), typeof(FileWhenNotExtensions), new string[] { "Is=>Be", "Does=>" })]
+        [DataRow("Object extension methods", typeof(ObjectIsExtensions), typeof(ObjectIsNotExtensions), typeof(ObjectCannotExtensions), typeof(ObjectMustExtensions), typeof(ObjectWhenExtensions), typeof(ObjectWhenNotExtensions), new string[] { "Is=>Be", "Does=>" })]
+        [DataRow("Collection extension methods", typeof(CollectionIsExtensions), typeof(CollectionIsNotExtensions), typeof(CollectionCannotExtensions), typeof(CollectionMustExtensions), typeof(CollectionWhenExtensions), typeof(CollectionWhenNotExtensions), new string[] { "Is=>Be", "Contains=>Contain" })]
+        [DataRow("File system extension methods", typeof(FileIsExtensions), typeof(FileIsNotExtensions), typeof(FileCannotExtensions), typeof(FileMustExtensions), typeof(FileWhenExtensions), typeof(FileWhenNotExtensions), new string[] { "Is=>Be", "Does=>" })]
         [DataTestMethod]
-        public void TestNamingConvention(Type isExtensions, Type isNotExtensions, Type cannotExtensions, Type mustExtensions, Type whenExtensions, Type whenNotExtensions, string[] prefixes)
+        public void TestNamingConvention(string name, Type isExtensions, Type isNotExtensions, Type cannotExtensions, Type mustExtensions, Type whenExtensions, Type whenNotExtensions, string[] prefixes)
         {
             var prefixes2 = prefixes.ToDictionary(x => x.Split(new string[] { "=>" }, StringSplitOptions.None)[0],
                                                   x => x.Split(new string[] { "=>" }, StringSplitOptions.None)[1]);
@@ -28,9 +29,15 @@ namespace DefensiveProgrammingFramework.Test
             this.TestClass(whenExtensions);
             this.TestClass(whenNotExtensions);
 
+            Debug.WriteLine(string.Empty);
+            Debug.WriteLine($"### {name}:");
+            Debug.WriteLine($"|is|is not|must|cannot|when|when not|");
+            Debug.WriteLine($"|--|--|--|--|--|--|");
+
             foreach (var method in isExtensions.GetMethods(BindingFlags.Public |
                                                            BindingFlags.Static |
-                                                           BindingFlags.DeclaredOnly))
+                                                           BindingFlags.DeclaredOnly)
+                                                .OrderBy(x => x.Name))
             {
                 var prefix = prefixes2.First(x => method.Name.StartsWith(x.Key)).Key;
                 var suffix = method.Name.Substring(prefix.Length);
@@ -72,6 +79,8 @@ namespace DefensiveProgrammingFramework.Test
                 this.TestReturnType(mustExtensions.GetMethod(mustMethodName), method.GetParameters()[0].ParameterType);
                 this.TestReturnType(whenExtensions.GetMethod(whenMethodName), method.GetParameters()[0].ParameterType);
                 this.TestReturnType(whenNotExtensions.GetMethod(whenNotMethodName), method.GetParameters()[0].ParameterType);
+
+                Debug.WriteLine($"|{method.Name}|{isNotMethodName}|{mustMethodName}|{cannotMethodName}|{whenMethodName}|{whenNotMethodName}|");
             }
 
             // check if method count equals

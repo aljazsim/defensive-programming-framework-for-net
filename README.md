@@ -1,5 +1,6 @@
 
 
+
 # Defensive programming framework for .NET Framework
 
 Defensive programing is a programming style that practices thorough validation of method input parameters resulting in robust code that allows method execution only in case of valid input or terminates it otherwise. 
@@ -245,7 +246,7 @@ Run the following command in your Package Manager Console in Visual Studio:
 ```csharp
 Install-Package DefensiveProgrammingFramework 
 ```
-Or just simply search for DefensiveProgrammingFramework in NuGet package manager in Visual Studio.
+Or just simply search for DefensiveProgrammingFramework in NuGet package manager in Visual Studio. The NuGet package is avaliable for **.NET Standard 2.0**.
 
 # Usage
 Simply include the DefensiveProgrammingFramework namespace in the source file and you'll be able to use the extension methods.   

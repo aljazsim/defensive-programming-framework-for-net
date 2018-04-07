@@ -47,7 +47,7 @@ public void Write(byte[] buffer, int startIndex, byte[] data)
     // input validation
     buffer.CannotBeNull(); // throws new ArgumentException if buffer == null
     startIndex.MustBeGreaterThanOrEqualTo(0); // throws new ArgumentException if startIndex <= 0
-    data.CannotBeNull(); // thorws new ArgumentException if data == null
+    data.CannotBeNull(); // throws new ArgumentException if data == null
     data.Length.MustBeLessThanOrEqualTo(buffer.Length - startIndex); // throws new ArgumentException if data.Length > buffer.Length - startIndex
 
     // actual execution code

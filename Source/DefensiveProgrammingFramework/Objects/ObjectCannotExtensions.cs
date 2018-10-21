@@ -76,7 +76,7 @@ namespace DefensiveProgrammingFramework
         {
             if (value1.IsEqualTo(value2))
             {
-                throw new ArgumentException($"Value cannot be of equal to {value2}.");
+                throw new ArgumentException($"Value cannot be equal to {value2}.");
             }
 
             return value1;
@@ -221,7 +221,7 @@ namespace DefensiveProgrammingFramework
         /// Returns original value if it does not match the specified regular expression; otherwise throws a new ArgumentException.
         /// </summary>
         /// <param name="value">The value.</param>
-        /// <param name="regex">The regex.</param>
+        /// <param name="regex">The regular expression.</param>
         /// <returns>The original value if it does not match the specified regular expression; otherwise throws a new ArgumentException.</returns>
         public static string CannotMatch(this string value, Regex regex)
         {

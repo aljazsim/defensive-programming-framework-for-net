@@ -17,7 +17,7 @@ namespace DefensiveProgrammingFramework
         /// Returns default value when the original value does match the specified regular expression; otherwise returns the original value.
         /// </summary>
         /// <param name="value">The value.</param>
-        /// <param name="regex">The regex.</param>
+        /// <param name="regex">The regular expression.</param>
         /// <param name="defaultValue">The default value.</param>
         /// <returns>The default value when the original value does match the specified regular expression; otherwise returns the original value.</returns>
         public static string WhenDoesMatch(this string value, Regex regex, string defaultValue)
@@ -39,7 +39,7 @@ namespace DefensiveProgrammingFramework
         /// <param name="value">The value.</param>
         /// <param name="func">The function.</param>
         /// <param name="defaultValue">The default value.</param>
-        /// <returns>The default value when the specified function returns true; otherwise returns the original value</returns>
+        /// <returns>The default value when the specified function returns true; otherwise returns the original value.</returns>
         public static T WhenIs<T>(this T value, Func<T, bool> func, T defaultValue)
         {
             if (value.Is(func))
@@ -255,13 +255,13 @@ namespace DefensiveProgrammingFramework
         }
 
         /// <summary>
-        /// Returns default value when the original value is equal to the specified type; otherwise returns the original value.
+        /// Returns default value when the original value is of the specified type; otherwise returns the original value.
         /// </summary>
         /// <typeparam name="T">The value type.</typeparam>
         /// <param name="value">The value.</param>
         /// <param name="type">The type.</param>
         /// <param name="defaultValue">The default value.</param>
-        /// <returns>The default value when the original value is equal to the specified type; otherwise returns the original value.</returns>
+        /// <returns>The default value when the original value is of the specified type; otherwise returns the original value.</returns>
         public static T WhenIsTypeOf<T>(this T value, Type type, T defaultValue)
         {
             if (value.IsTypeOf(type))

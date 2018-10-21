@@ -18,7 +18,7 @@ namespace DefensiveProgrammingFramework
         /// Determines whether the specified value matches the specified regular expression.
         /// </summary>
         /// <param name="value">The value.</param>
-        /// <param name="regex">The regex.</param>
+        /// <param name="regex">The regular expression.</param>
         /// <returns>
         ///   <c>true</c> if specified value matches the specified regular expression; otherwise, <c>false</c>.
         /// </returns>
@@ -254,13 +254,13 @@ namespace DefensiveProgrammingFramework
         }
 
         /// <summary>
-        /// Determines whether the specified value is subtype of of the specified type.
+        /// Determines whether the specified value is subtype of the specified type.
         /// </summary>
         /// <typeparam name="T">The value type.</typeparam>
         /// <param name="value">The value.</param>
         /// <param name="type">The type.</param>
         /// <returns>
-        ///   <c>true</c> if the specified value is subtype of of the specified type; otherwise, <c>false</c>.
+        ///   <c>true</c> if the specified value is subtype of the specified type; otherwise, <c>false</c>.
         /// </returns>
         public static bool IsSubTypeOf<T>(this T value, Type type)
         {
@@ -284,13 +284,13 @@ namespace DefensiveProgrammingFramework
         }
 
         /// <summary>
-        /// Determines whether the specified value equals the specified type.
+        /// Determines whether the specified value is of the specified type.
         /// </summary>
         /// <typeparam name="T">The value type.</typeparam>
         /// <param name="value">The value.</param>
         /// <param name="type">The type.</param>
         /// <returns>
-        ///   <c>true</c> if the specified value does equals the specified type; otherwise, <c>false</c>.
+        ///   <c>true</c> if the specified value is of the specified type; otherwise, <c>false</c>.
         /// </returns>
         public static bool IsTypeOf<T>(this T value, Type type)
         {

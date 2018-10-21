@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Text.RegularExpressions;
-using DefensiveProgrammingFramework;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DefensiveProgrammingFramework.Test.Objects
@@ -134,7 +133,7 @@ namespace DefensiveProgrammingFramework.Test.Objects
             }
             catch (ArgumentException ex)
             {
-                Assert.AreEqual($"Value cannot be of equal to {value2}.", ex.Message);
+                Assert.AreEqual($"Value cannot be equal to {value2}.", ex.Message);
             }
         }
 

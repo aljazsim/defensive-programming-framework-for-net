@@ -17,7 +17,7 @@ namespace DefensiveProgrammingFramework
         /// Determines whether the specified value does not match the specified regular expression.
         /// </summary>
         /// <param name="value">The value.</param>
-        /// <param name="regex">The regex.</param>
+        /// <param name="regex">The regular expression.</param>
         /// <returns>
         ///   <c>true</c> if specified value does not match the specified regular expression; otherwise, <c>false</c>.
         /// </returns>
@@ -177,13 +177,13 @@ namespace DefensiveProgrammingFramework
         }
 
         /// <summary>
-        /// Determines whether the specified value is not subtype of of the specified type.
+        /// Determines whether the specified value is not subtype of the specified type.
         /// </summary>
         /// <typeparam name="T">The value type.</typeparam>
         /// <param name="value">The value.</param>
         /// <param name="type">The type.</param>
         /// <returns>
-        ///   <c>true</c> if the specified value is not subtype of of the specified type; otherwise, <c>false</c>.
+        ///   <c>true</c> if the specified value is not subtype of the specified type; otherwise, <c>false</c>.
         /// </returns>
         public static bool IsNotSubTypeOf<T>(this T value, Type type)
         {
@@ -191,13 +191,13 @@ namespace DefensiveProgrammingFramework
         }
 
         /// <summary>
-        /// Determines whether the specified value does not equal the specified type.
+        /// Determines whether the specified value is not of the specified type.
         /// </summary>
         /// <typeparam name="T">The value type.</typeparam>
         /// <param name="value">The value.</param>
         /// <param name="type">The type.</param>
         /// <returns>
-        ///   <c>true</c> if the specified value does not equal the specified type; otherwise, <c>false</c>.
+        ///   <c>true</c> if the specified value is not of the specified type; otherwise, <c>false</c>.
         /// </returns>
         public static bool IsNotTypeOf<T>(this T value, Type type)
         {

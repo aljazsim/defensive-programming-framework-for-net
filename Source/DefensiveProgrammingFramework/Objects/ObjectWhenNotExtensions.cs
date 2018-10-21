@@ -17,7 +17,7 @@ namespace DefensiveProgrammingFramework
         /// Returns default value when the original value does not match the specified regular expression; otherwise returns the original value.
         /// </summary>
         /// <param name="value">The value.</param>
-        /// <param name="regex">The regex.</param>
+        /// <param name="regex">The regular expression.</param>
         /// <param name="defaultValue">The default value.</param>
         /// <returns>The default value when the original value does not match the specified regular expression; otherwise returns the original value.</returns>
         public static string WhenDoesNotMatch(this string value, Regex regex, string defaultValue)
@@ -255,13 +255,13 @@ namespace DefensiveProgrammingFramework
         }
 
         /// <summary>
-        /// Returns default value when the original value is not equal to the specified type; otherwise returns the original value.
+        /// Returns default value when the original value is not of the specified type; otherwise returns the original value.
         /// </summary>
         /// <typeparam name="T">The value type.</typeparam>
         /// <param name="value">The value.</param>
         /// <param name="type">The type.</param>
         /// <param name="defaultValue">The default value.</param>
-        /// <returns>The default value when the original value is not equal to the specified type; otherwise returns the original value.</returns>
+        /// <returns>The default value when the original value is not of the specified type; otherwise returns the original value.</returns>
         public static T WhenIsNotTypeOf<T>(this T value, Type type, T defaultValue)
         {
             if (value.IsNotTypeOf(type))

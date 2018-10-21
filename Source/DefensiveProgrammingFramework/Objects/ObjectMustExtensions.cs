@@ -221,7 +221,7 @@ namespace DefensiveProgrammingFramework
         /// Returns original value if it matches the specified regular expression; otherwise throws a new ArgumentException.
         /// </summary>
         /// <param name="value">The value.</param>
-        /// <param name="regex">The regex.</param>
+        /// <param name="regex">The regular expression.</param>
         /// <returns>The original value if it matches the specified regular expression; otherwise throws a new ArgumentException.</returns>
         public static string MustMatch(this string value, Regex regex)
         {

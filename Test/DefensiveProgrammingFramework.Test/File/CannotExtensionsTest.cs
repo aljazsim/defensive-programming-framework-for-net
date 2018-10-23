@@ -332,6 +332,17 @@ namespace DefensiveProgrammingFramework.Test.Files
                 Assert.AreEqual("Directory cannot exist.", ex.Message);
             }
 
+            try
+            {
+                @".\Temp".CannotDirectoryExist(() => throw new InvalidOperationException("Test."));
+
+                Assert.Fail();
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual("Test.", ex.Message);
+            }
+
             if (Directory.Exists(@".\Temp"))
             {
                 Directory.Delete(@".\Temp");

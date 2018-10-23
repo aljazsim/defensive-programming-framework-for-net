@@ -408,6 +408,33 @@ namespace DefensiveProgrammingFramework.Test.Objects
             Assert.AreSame(value, value.CannotBeNull());
         }
 
+        [DataRow(null)]
+        [DataTestMethod]
+        public void CannotBeNullFail(object value)
+        {
+            try
+            {
+                value.CannotBeNull();
+
+                Assert.Fail();
+            }
+            catch (ArgumentException ex)
+            {
+                Assert.AreEqual("Value cannot be null.", ex.Message);
+            }
+
+            try
+            {
+                value.CannotBeNull(() => throw new InvalidOperationException("Test."));
+
+                Assert.Fail();
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual("Test.", ex.Message);
+            }
+        }
+
         [DataRow("a", typeof(int))]
         [DataRow(null, typeof(int))]
         [DataRow(Math.PI, typeof(string))]

@@ -338,6 +338,17 @@ namespace DefensiveProgrammingFramework.Test.Files
             {
                 Assert.AreEqual("Directory must exist.", ex.Message);
             }
+
+            try
+            {
+                @".\Temp".MustDirectoryExist(() => throw new InvalidOperationException("Test."));
+
+                Assert.Fail();
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual("Test.", ex.Message);
+            }
         }
 
         [TestMethod]
@@ -364,6 +375,17 @@ namespace DefensiveProgrammingFramework.Test.Files
             catch (ArgumentException ex)
             {
                 Assert.AreEqual("File must exist.", ex.Message);
+            }
+
+            try
+            {
+                @".\Temp".MustFileExist(() => throw new InvalidOperationException("Test."));
+
+                Assert.Fail();
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual("Test.", ex.Message);
             }
         }
 

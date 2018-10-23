@@ -15,11 +15,11 @@ namespace DefensiveProgrammingFramework
         #region Public Methods
 
         /// <summary>
-        /// Returns original value if the specified value isn't empty; otherwise throws a new ArgumentException.
+        /// Returns original value if the specified value is not empty; otherwise throws a new ArgumentException.
         /// </summary>
         /// <typeparam name="T">The value type.</typeparam>
         /// <param name="value">The value.</param>
-        /// <returns>The original value if the specified value isn't empty; otherwise throws a new ArgumentException.</returns>
+        /// <returns>The original value if the specified value is not empty; otherwise throws a new ArgumentException.</returns>
         public static IEnumerable<T> CannotBeEmpty<T>(this IEnumerable<T> value)
         {
             if (value.IsEmpty())
@@ -31,14 +31,14 @@ namespace DefensiveProgrammingFramework
         }
 
         /// <summary>
-        /// Returns original value if the specified value isn't equal to the compared value; otherwise throws a new ArgumentException.
+        /// Returns original value if the specified value is not equal to the compared value; otherwise throws a new ArgumentException.
         /// </summary>
         /// <typeparam name="T">The value type.</typeparam>
         /// <param name="value1">The value1.</param>
         /// <param name="value2">The value2.</param>
         /// <param name="ignoreOrder">If set to <c>true</c> ignore item order.</param>
         /// <returns>
-        /// The original value if the specified value isn't equal to the compared value; otherwise throws a new ArgumentException.
+        /// The original value if the specified value is not equal to the compared value; otherwise throws a new ArgumentException.
         /// </returns>
         public static IEnumerable<T> CannotBeEqualTo<T>(this IEnumerable<T> value1, IEnumerable<T> value2, bool ignoreOrder = false)
             where T : IComparable
@@ -52,12 +52,12 @@ namespace DefensiveProgrammingFramework
         }
 
         /// <summary>
-        /// Returns original value if the specified value isn't null or empty; otherwise throws a new ArgumentException.
+        /// Returns original value if the specified value is not null or empty; otherwise throws a new ArgumentException.
         /// </summary>
         /// <typeparam name="T">The value type.</typeparam>
         /// <param name="value">The value.</param>
         /// <returns>
-        /// The original value if the specified value isn't null or empty; otherwise throws a new ArgumentException.
+        /// The original value if the specified value is not null or empty; otherwise throws a new ArgumentException.
         /// </returns>
         /// <exception cref="ArgumentException">Value cannot be null or empty.</exception>
         public static T CannotBeNullOrEmpty<T>(this T value) where T : IEnumerable

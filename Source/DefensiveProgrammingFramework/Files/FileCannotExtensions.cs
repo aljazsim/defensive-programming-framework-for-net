@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Text.RegularExpressions;
 
 namespace DefensiveProgrammingFramework
 {
@@ -65,11 +64,11 @@ namespace DefensiveProgrammingFramework
         }
 
         /// <summary>
-        /// Returns original value if the specified value isn't a valid directory path; otherwise throws a new ArgumentException.
+        /// Returns original value if the specified value is not a valid directory path; otherwise throws a new ArgumentException.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>
-        /// The original value if the specified value isn't a valid directory path; otherwise throws a new ArgumentException.
+        /// The original value if the specified value is not a valid directory path; otherwise throws a new ArgumentException.
         /// </returns>
         public static string CannotBeValidDirectoryPath(this string value)
         {
@@ -82,11 +81,11 @@ namespace DefensiveProgrammingFramework
         }
 
         /// <summary>
-        /// Returns original value if the specified value isn't a valid file name; otherwise throws a new ArgumentException.
+        /// Returns original value if the specified value is not a valid file name; otherwise throws a new ArgumentException.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>
-        /// The original value if the specified value isn't a valid file name; otherwise throws a new ArgumentException.
+        /// The original value if the specified value is not a valid file name; otherwise throws a new ArgumentException.
         /// </returns>
         public static string CannotBeValidFileName(this string value)
         {
@@ -99,11 +98,11 @@ namespace DefensiveProgrammingFramework
         }
 
         /// <summary>
-        /// Returns original value if the specified value isn't a valid file path; otherwise throws a new ArgumentException.
+        /// Returns original value if the specified value is not a valid file path; otherwise throws a new ArgumentException.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>
-        /// The original value if the specified value isn't a valid file path; otherwise throws a new ArgumentException.
+        /// The original value if the specified value is not a valid file path; otherwise throws a new ArgumentException.
         /// </returns>
         public static string CannotBeValidFilePath(this string value)
         {

@@ -100,13 +100,13 @@ namespace DefensiveProgrammingFramework
         }
 
         /// <summary>
-        /// Returns original value if the specified value isn't empty; otherwise returns the original value.
+        /// Returns original value if the specified value is not empty; otherwise returns the original value.
         /// </summary>
         /// <typeparam name="T">The value type.</typeparam>
         /// <param name="value">The value.</param>
         /// <param name="defaultValue">The default value.</param>
         /// <returns>
-        /// The original value if the specified value isn't empty; otherwise returns the original value.
+        /// The original value if the specified value is not empty; otherwise returns the original value.
         /// </returns>
         public static IEnumerable<T> WhenIsNotEmpty<T>(this IEnumerable<T> value, IEnumerable<T> defaultValue)
         {
@@ -121,7 +121,7 @@ namespace DefensiveProgrammingFramework
         }
 
         /// <summary>
-        /// Returns original value if the specified value isn't equal to the compared value; otherwise returns the original value.
+        /// Returns original value if the specified value is not equal to the compared value; otherwise returns the original value.
         /// </summary>
         /// <typeparam name="T">The value type.</typeparam>
         /// <param name="value1">The value1.</param>
@@ -129,7 +129,7 @@ namespace DefensiveProgrammingFramework
         /// <param name="ignoreOrder">If set to <c>true</c> ignore item order.</param>
         /// <param name="defaultValue">The default value.</param>
         /// <returns>
-        /// The original value if the specified value isn't equal to the compared value; otherwise returns the original value.
+        /// The original value if the specified value is not equal to the compared value; otherwise returns the original value.
         /// </returns>
         public static IEnumerable<T> WhenIsNotEqualTo<T>(this IEnumerable<T> value1, IEnumerable<T> value2, bool ignoreOrder, IEnumerable<T> defaultValue)
             where T : IComparable
@@ -145,13 +145,13 @@ namespace DefensiveProgrammingFramework
         }
 
         /// <summary>
-        /// Returns original value if the specified value isn't null or empty; otherwise returns the original value.
+        /// Returns original value if the specified value is not null or empty; otherwise returns the original value.
         /// </summary>
         /// <typeparam name="T">The value type.</typeparam>
         /// <param name="value">The value.</param>
         /// <param name="defaultValue">The default value.</param>
         /// <returns>
-        /// The original value if the specified value isn't null or empty; otherwise returns the original value.
+        /// The original value if the specified value is not null or empty; otherwise returns the original value.
         /// </returns>
         public static T WhenIsNotNullOrEmpty<T>(this T value, T defaultValue) where T : IEnumerable
         {

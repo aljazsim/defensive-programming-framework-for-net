@@ -65,12 +65,12 @@ namespace DefensiveProgrammingFramework
         }
 
         /// <summary>
-        /// Determines whether the specified collection isn't empty.
+        /// Determines whether the specified collection is not empty.
         /// </summary>
         /// <typeparam name="T">The value type.</typeparam>
         /// <param name="value">The value.</param>
         /// <returns>
-        ///   <c>true</c> if the specified collection isn't empty; otherwise, <c>false</c>.
+        ///   <c>true</c> if the specified collection is not empty; otherwise, <c>false</c>.
         /// </returns>
         public static bool IsNotEmpty<T>(this IEnumerable<T> value)
         {
@@ -78,14 +78,14 @@ namespace DefensiveProgrammingFramework
         }
 
         /// <summary>
-        /// Determines whether the specified collection isn't equal to compared collection.
+        /// Determines whether the specified collection is not equal to compared collection.
         /// </summary>
         /// <typeparam name="T">The value type.</typeparam>
         /// <param name="value1">The value1.</param>
         /// <param name="value2">The value2.</param>
         /// <param name="ignoreOrder">If set to <c>true</c> ignore order of the items.</param>
         /// <returns>
-        ///   <c>true</c> if the specified collection isn't equal to compared collection; otherwise, <c>false</c>.
+        ///   <c>true</c> if the specified collection is not equal to compared collection; otherwise, <c>false</c>.
         /// </returns>
         public static bool IsNotEqualTo<T>(this IEnumerable<T> value1, IEnumerable<T> value2, bool ignoreOrder = false) where T : IComparable
         {
@@ -93,12 +93,12 @@ namespace DefensiveProgrammingFramework
         }
 
         /// <summary>
-        /// Determines whether the specified collection isn't null or empty.
+        /// Determines whether the specified collection is not null or empty.
         /// </summary>
         /// <typeparam name="T">The value type.</typeparam>
         /// <param name="value">The value.</param>
         /// <returns>
-        ///   <c>true</c> if the specified collection isn't null or empty; otherwise, <c>false</c>.
+        ///   <c>true</c> if the specified collection is not null or empty; otherwise, <c>false</c>.
         /// </returns>
         public static bool IsNotNullOrEmpty<T>(this T value) where T : IEnumerable
         {

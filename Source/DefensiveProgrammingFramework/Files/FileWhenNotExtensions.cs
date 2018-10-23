@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Text.RegularExpressions;
+﻿using System.Diagnostics;
 
 namespace DefensiveProgrammingFramework
 {
@@ -14,12 +12,12 @@ namespace DefensiveProgrammingFramework
         #region Public Methods
 
         /// <summary>
-        /// Returns default value when the specified directory does exist; otherwise returns the original value.
+        /// Returns default value when the specified directory does not exist; otherwise returns the original value.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <param name="defaultValue">The default value.</param>
         /// <returns>
-        /// The default value when the directory does exist; otherwise returns the original value.
+        /// The default value when the directory does not exist; otherwise returns the original value.
         /// </returns>
         public static string WhenDoesNotDirectoryExist(this string value, string defaultValue)
         {

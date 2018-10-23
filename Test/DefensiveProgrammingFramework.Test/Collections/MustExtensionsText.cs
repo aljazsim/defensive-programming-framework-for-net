@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using DefensiveProgrammingFramework;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DefensiveProgrammingFramework.Test.Collections
@@ -65,6 +64,17 @@ namespace DefensiveProgrammingFramework.Test.Collections
             {
                 Assert.AreEqual("Value must be empty.", ex.Message);
             }
+
+            try
+            {
+                new int[] { 2, 2, 2 }.MustBeEmpty(() => throw new InvalidOperationException("Test."));
+
+                Assert.Fail();
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual("Test.", ex.Message);
+            }
         }
 
         [TestMethod]
@@ -98,6 +108,17 @@ namespace DefensiveProgrammingFramework.Test.Collections
             {
                 Assert.AreEqual($"Value must be equal to [1, 2, 4].", ex.Message);
             }
+
+            try
+            {
+                new int[] { 3, 1, 2 }.ToList().MustBeEqualTo(new int[] { 1, 2, 4 }, true, () => throw new InvalidOperationException("Test."));
+
+                Assert.Fail();
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual("Test.", ex.Message);
+            }
         }
 
         [DataRow("")]
@@ -124,6 +145,17 @@ namespace DefensiveProgrammingFramework.Test.Collections
             catch (ArgumentException ex)
             {
                 Assert.AreEqual("Value must be null or empty.", ex.Message);
+            }
+
+            try
+            {
+                value.MustBeNullOrEmpty(() => throw new InvalidOperationException("Test."));
+
+                Assert.Fail();
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual("Test.", ex.Message);
             }
         }
 
@@ -157,6 +189,17 @@ namespace DefensiveProgrammingFramework.Test.Collections
             catch (ArgumentNullException ex)
             {
                 Assert.AreEqual("Value cannot be null.", ex.Message);
+            }
+
+            try
+            {
+                1.MustBeOneOf(new int[] { 0, 2, 3, 4 }.ToList(), () => throw new InvalidOperationException("Test."));
+
+                Assert.Fail();
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual("Test.", ex.Message);
             }
         }
 
@@ -209,6 +252,17 @@ namespace DefensiveProgrammingFramework.Test.Collections
             {
                 Assert.AreEqual($"Value must contain duplicates.", ex.Message);
             }
+
+            try
+            {
+                new int[] { 1, 11, 111 }.MustContainDuplicates(() => throw new InvalidOperationException("Test."));
+
+                Assert.Fail();
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual("Test.", ex.Message);
+            }
         }
 
         [TestMethod]
@@ -234,6 +288,17 @@ namespace DefensiveProgrammingFramework.Test.Collections
             catch (ArgumentException ex)
             {
                 Assert.AreEqual($"Value must contain specified expression.", ex.Message);
+            }
+
+            try
+            {
+                new int[] { 1, 2, 3 }.MustContain(x => false, () => throw new InvalidOperationException("Test."));
+
+                Assert.Fail();
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual("Test.", ex.Message);
             }
         }
 
@@ -278,6 +343,17 @@ namespace DefensiveProgrammingFramework.Test.Collections
             catch (ArgumentException ex)
             {
                 Assert.AreEqual("Value must contain null.", ex.Message);
+            }
+
+            try
+            {
+                new string[] { "aaa", "bb", "c" }.MustContainNull(() => throw new InvalidOperationException("Test."));
+
+                Assert.Fail();
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual("Test.", ex.Message);
             }
         }
 
@@ -334,6 +410,17 @@ namespace DefensiveProgrammingFramework.Test.Collections
             catch (ArgumentException ex)
             {
                 Assert.AreEqual("Value must contain only null.", ex.Message);
+            }
+
+            try
+            {
+                new string[] { null, "a", null }.MustContainOnlyNull(() => throw new InvalidOperationException("Test."));
+
+                Assert.Fail();
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual("Test.", ex.Message);
             }
         }
 

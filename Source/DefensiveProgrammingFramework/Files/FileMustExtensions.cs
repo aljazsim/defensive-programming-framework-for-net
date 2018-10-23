@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Text.RegularExpressions;
 
 namespace DefensiveProgrammingFramework
 {
@@ -17,14 +16,22 @@ namespace DefensiveProgrammingFramework
         /// Returns original value if the specified value is an absolute directory path; otherwise throws a new ArgumentException.
         /// </summary>
         /// <param name="value">The value.</param>
+        /// <param name="errorHandler">The error handler.</param>
         /// <returns>
         /// The original value if the specified value is an absolute directory path; otherwise throws a new ArgumentException.
         /// </returns>
-        public static string MustBeAbsoluteDirectoryPath(this string value)
+        public static string MustBeAbsoluteDirectoryPath(this string value, Action errorHandler = null)
         {
             if (value.IsNotAbsoluteDirectoryPath())
             {
-                throw new ArgumentException("Value must be an absolute directory path.");
+                if (errorHandler.IsNull())
+                {
+                    throw new ArgumentException("Value must be an absolute directory path.");
+                }
+                else
+                {
+                    errorHandler();
+                }
             }
 
             return value;
@@ -34,14 +41,22 @@ namespace DefensiveProgrammingFramework
         /// Returns original value if the specified value is an absolute file path; otherwise throws a new ArgumentException.
         /// </summary>
         /// <param name="value">The value.</param>
+        /// <param name="errorHandler">The error handler.</param>
         /// <returns>
         /// The original value if the specified value is an absolute file path; otherwise throws a new ArgumentException.
         /// </returns>
-        public static string MustBeAbsoluteFilePath(this string value)
+        public static string MustBeAbsoluteFilePath(this string value, Action errorHandler = null)
         {
             if (value.IsNotAbsoluteFilePath())
             {
-                throw new ArgumentException("Value must be an absolute file path.");
+                if (errorHandler.IsNull())
+                {
+                    throw new ArgumentException("Value must be an absolute file path.");
+                }
+                else
+                {
+                    errorHandler();
+                }
             }
 
             return value;
@@ -51,14 +66,22 @@ namespace DefensiveProgrammingFramework
         /// Returns original value if the specified value is an empty directory path; otherwise throws a new ArgumentException.
         /// </summary>
         /// <param name="value">The value.</param>
+        /// <param name="errorHandler">The error handler.</param>
         /// <returns>
         /// The original value if the specified value is an empty directory path; otherwise throws a new ArgumentException.
         /// </returns>
-        public static string MustBeEmptyDirectory(this string value)
+        public static string MustBeEmptyDirectory(this string value, Action errorHandler = null)
         {
             if (value.IsNotEmptyDirectory())
             {
-                throw new ArgumentException("Value must be an empty directory.");
+                if (errorHandler.IsNull())
+                {
+                    throw new ArgumentException("Value must be an empty directory.");
+                }
+                else
+                {
+                    errorHandler();
+                }
             }
 
             return value;
@@ -68,14 +91,22 @@ namespace DefensiveProgrammingFramework
         /// Returns original value if the specified value is a valid directory path; otherwise throws a new ArgumentException.
         /// </summary>
         /// <param name="value">The value.</param>
+        /// <param name="errorHandler">The error handler.</param>
         /// <returns>
         /// The original value if the specified value is a valid directory path; otherwise throws a new ArgumentException.
         /// </returns>
-        public static string MustBeValidDirectoryPath(this string value)
+        public static string MustBeValidDirectoryPath(this string value, Action errorHandler = null)
         {
             if (value.IsNotValidFilePath())
             {
-                throw new ArgumentException("Value must be a valid directory path.");
+                if (errorHandler.IsNull())
+                {
+                    throw new ArgumentException("Value must be a valid directory path.");
+                }
+                else
+                {
+                    errorHandler();
+                }
             }
 
             return value;
@@ -85,14 +116,22 @@ namespace DefensiveProgrammingFramework
         /// Returns original value if the specified value is a valid file name; otherwise throws a new ArgumentException.
         /// </summary>
         /// <param name="value">The value.</param>
+        /// <param name="errorHandler">The error handler.</param>
         /// <returns>
         /// The original value if the specified value is a valid file name; otherwise throws a new ArgumentException.
         /// </returns>
-        public static string MustBeValidFileName(this string value)
+        public static string MustBeValidFileName(this string value, Action errorHandler = null)
         {
             if (value.IsNotValidFileName())
             {
-                throw new ArgumentException("Value must be a valid file name.");
+                if (errorHandler.IsNull())
+                {
+                    throw new ArgumentException("Value must be a valid file name.");
+                }
+                else
+                {
+                    errorHandler();
+                }
             }
 
             return value;
@@ -102,14 +141,22 @@ namespace DefensiveProgrammingFramework
         /// Returns original value if the specified value is a valid file path; otherwise throws a new ArgumentException.
         /// </summary>
         /// <param name="value">The value.</param>
+        /// <param name="errorHandler">The error handler.</param>
         /// <returns>
         /// The original value if the specified value is a valid file path; otherwise throws a new ArgumentException.
         /// </returns>
-        public static string MustBeValidFilePath(this string value)
+        public static string MustBeValidFilePath(this string value, Action errorHandler = null)
         {
             if (value.IsNotValidFilePath())
             {
-                throw new ArgumentException("Value must be a valid file path.");
+                if (errorHandler.IsNull())
+                {
+                    throw new ArgumentException("Value must be a valid file path.");
+                }
+                else
+                {
+                    errorHandler();
+                }
             }
 
             return value;
@@ -119,14 +166,22 @@ namespace DefensiveProgrammingFramework
         /// Returns original value if the specified directory exists; otherwise throws a new ArgumentException.
         /// </summary>
         /// <param name="value">The value.</param>
+        /// <param name="errorHandler">The error handler.</param>
         /// <returns>
         /// The original value if the specified directory exists; otherwise throws a new ArgumentException.
         /// </returns>
-        public static string MustDirectoryExist(this string value)
+        public static string MustDirectoryExist(this string value, Action errorHandler = null)
         {
             if (value.DoesNotDirectoryExist())
             {
-                throw new ArgumentException("Directory must exist.");
+                if (errorHandler.IsNull())
+                {
+                    throw new ArgumentException("Directory must exist.");
+                }
+                else
+                {
+                    errorHandler();
+                }
             }
 
             return value;
@@ -136,14 +191,22 @@ namespace DefensiveProgrammingFramework
         /// Returns original value if the specified file exists; otherwise throws a new ArgumentException.
         /// </summary>
         /// <param name="value">The value.</param>
+        /// <param name="errorHandler">The error handler.</param>
         /// <returns>
         /// The original value if the specified file exists; otherwise throws a new ArgumentException.
         /// </returns>
-        public static string MustFileExist(this string value)
+        public static string MustFileExist(this string value, Action errorHandler = null)
         {
             if (value.DoesNotFileExist())
             {
-                throw new ArgumentException("File must exist.");
+                if (errorHandler.IsNull())
+                {
+                    throw new ArgumentException("File must exist.");
+                }
+                else
+                {
+                    errorHandler();
+                }
             }
 
             return value;

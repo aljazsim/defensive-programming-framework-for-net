@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
@@ -18,8 +19,7 @@ namespace DefensiveProgrammingFramework.Test
         [DataTestMethod]
         public void TestNamingConvention(string name, Type isExtensions, Type isNotExtensions, Type cannotExtensions, Type mustExtensions, Type whenExtensions, Type whenNotExtensions, string[] prefixes)
         {
-            var prefixes2 = prefixes.ToDictionary(x => x.Split(new string[] { "=>" }, StringSplitOptions.None)[0],
-                                                  x => x.Split(new string[] { "=>" }, StringSplitOptions.None)[1]);
+            Dictionary<string, string> prefixes2 = prefixes.ToDictionary(x => x.Split(new string[] { "=>" }, StringSplitOptions.None)[0], x => x.Split(new string[] { "=>" }, StringSplitOptions.None)[1]);
 
             // check if classes are static
             this.TestClass(isExtensions);
@@ -34,27 +34,27 @@ namespace DefensiveProgrammingFramework.Test
             Debug.WriteLine($"|is|is not|must|cannot|when|when not|");
             Debug.WriteLine($"|--|--|--|--|--|--|");
 
-            foreach (var method in isExtensions.GetMethods(BindingFlags.Public |
+            foreach (MethodInfo method in isExtensions.GetMethods(BindingFlags.Public |
                                                            BindingFlags.Static |
                                                            BindingFlags.DeclaredOnly)
                                                 .OrderBy(x => x.Name))
             {
-                var prefix = prefixes2.First(x => method.Name.StartsWith(x.Key)).Key;
-                var suffix = method.Name.Substring(prefix.Length);
-                var substitute = prefixes2[prefix];
+                string prefix = prefixes2.First(x => method.Name.StartsWith(x.Key)).Key;
+                string suffix = method.Name.Substring(prefix.Length);
+                string substitute = prefixes2[prefix];
 
-                var isNotMethodName = $"{prefix}Not{suffix}";
-                var cannotMethodName = $"Cannot{substitute}{suffix}";
-                var mustMethodName = $"Must{substitute}{suffix}";
-                var whenMethodName = $"When{prefix}{suffix}";
-                var whenNotMethodName = $"When{prefix}Not{suffix}";
+                string isNotMethodName = $"{prefix}Not{suffix}";
+                string cannotMethodName = $"Cannot{substitute}{suffix}";
+                string mustMethodName = $"Must{substitute}{suffix}";
+                string whenMethodName = $"When{prefix}{suffix}";
+                string whenNotMethodName = $"When{prefix}Not{suffix}";
 
                 if (method.Name == "IsMatch")
                 {
-                    cannotMethodName = "CannotMatch";
-                    mustMethodName = "MustMatch";
-                    whenMethodName = "WhenDoesMatch";
-                    whenNotMethodName = "WhenDoesNotMatch";
+                    cannotMethodName = nameof(ObjectCannotExtensions.CannotMatch);
+                    mustMethodName = nameof(ObjectMustExtensions.MustMatch);
+                    whenMethodName = nameof(ObjectWhenExtensions.WhenDoesMatch);
+                    whenNotMethodName = nameof(ObjectWhenNotExtensions.WhenDoesNotMatch);
                 }
 
                 // check if naming convention
@@ -66,11 +66,11 @@ namespace DefensiveProgrammingFramework.Test
                 this.TestMethodName(whenNotExtensions, whenNotMethodName);
 
                 // check parameters
-                this.TestParameters(method, isNotExtensions.GetMethod(isNotMethodName), false);
-                this.TestParameters(method, cannotExtensions.GetMethod(cannotMethodName), false);
-                this.TestParameters(method, mustExtensions.GetMethod(mustMethodName), false);
-                this.TestParameters(method, whenExtensions.GetMethod(whenMethodName), true);
-                this.TestParameters(method, whenNotExtensions.GetMethod(whenNotMethodName), true);
+                this.TestParameters(method, isNotExtensions.GetMethod(isNotMethodName), false, false);
+                this.TestParameters(method, cannotExtensions.GetMethod(cannotMethodName), false, name != "Object extension methods" || method.Name != nameof(ObjectIsExtensions.IsOneOf));
+                this.TestParameters(method, mustExtensions.GetMethod(mustMethodName), false, name != "Object extension methods" || method.Name != nameof(ObjectIsExtensions.IsOneOf));
+                this.TestParameters(method, whenExtensions.GetMethod(whenMethodName), true, false);
+                this.TestParameters(method, whenNotExtensions.GetMethod(whenNotMethodName), true, false);
 
                 // check return types
                 this.TestReturnType(method, typeof(bool));
@@ -130,7 +130,7 @@ namespace DefensiveProgrammingFramework.Test
 
         private void TestMethodName(Type type, string methodName)
         {
-            var methods = type.GetMethods();
+            MethodInfo[] methods = type.GetMethods();
 
             if (!methods.Any(x => x.Name == methodName))
             {
@@ -142,12 +142,12 @@ namespace DefensiveProgrammingFramework.Test
             }
         }
 
-        private void TestParameters(MethodInfo methodInfo1, MethodInfo methodInfo2, bool containsDefaultValue)
+        private void TestParameters(MethodInfo methodInfo1, MethodInfo methodInfo2, bool containsDefaultValue, bool containsErrorHandler)
         {
-            var parameters1 = methodInfo1.GetParameters();
-            var parameters2 = methodInfo2.GetParameters();
+            ParameterInfo[] parameters1 = methodInfo1.GetParameters();
+            ParameterInfo[] parameters2 = methodInfo2.GetParameters();
 
-            if (parameters1.Length != parameters2.Length + (containsDefaultValue ? -1 : 0))
+            if (parameters1.Length != parameters2.Length + (containsDefaultValue ? -1 : 0) + (containsErrorHandler ? -1 : 0))
             {
                 Assert.Fail($"Method {methodInfo1.Name} parameters do not match {methodInfo2.Name}.");
             }

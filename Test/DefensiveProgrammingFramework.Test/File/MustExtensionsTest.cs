@@ -47,6 +47,17 @@ namespace DefensiveProgrammingFramework.Test.Files
                 Assert.AreEqual("Value must be an empty directory.", ex.Message);
             }
 
+            try
+            {
+                directoryPath.MustBeEmptyDirectory(() => throw new InvalidOperationException("Test."));
+
+                Assert.Fail();
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual("Test.", ex.Message);
+            }
+
             File.Delete(filePath);
             Directory.Delete(directoryPath);
         }
@@ -93,6 +104,17 @@ namespace DefensiveProgrammingFramework.Test.Files
             {
                 Assert.AreEqual("Value must be an absolute directory path.", ex.Message);
             }
+
+            try
+            {
+                directoryPath.MustBeAbsoluteDirectoryPath(() => throw new InvalidOperationException("Test."));
+
+                Assert.Fail();
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual("Test.", ex.Message);
+            }
         }
 
         [DataRow(@".\Tem|p")]
@@ -136,6 +158,17 @@ namespace DefensiveProgrammingFramework.Test.Files
             {
                 Assert.AreEqual("Value must be an absolute file path.", ex.Message);
             }
+
+            try
+            {
+                filePath.MustBeAbsoluteFilePath(() => throw new InvalidOperationException("Test."));
+
+                Assert.Fail();
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual("Test.", ex.Message);
+            }
         }
 
         [DataRow(@"c:\fil|e.exe")]
@@ -173,17 +206,28 @@ namespace DefensiveProgrammingFramework.Test.Files
         [DataRow("file>1.exe")]
         [DataRow("file|1.ex'")]
         [DataTestMethod]
-        public void MustBeValidDirectoryPathFail(string filePath)
+        public void MustBeValidDirectoryPathFail(string directoryPath)
         {
             try
             {
-                filePath.MustBeValidDirectoryPath();
+                directoryPath.MustBeValidDirectoryPath();
 
                 Assert.Fail();
             }
             catch (ArgumentException ex)
             {
                 Assert.AreEqual("Value must be a valid directory path.", ex.Message);
+            }
+
+            try
+            {
+                directoryPath.MustBeValidDirectoryPath(() => throw new InvalidOperationException("Test."));
+
+                Assert.Fail();
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual("Test.", ex.Message);
             }
         }
 
@@ -203,17 +247,28 @@ namespace DefensiveProgrammingFramework.Test.Files
         [DataRow("file>1.exe")]
         [DataRow("file?1.ex'")]
         [DataTestMethod]
-        public void MustBeValidFileNameFail(string filePath)
+        public void MustBeValidFileNameFail(string fileName)
         {
             try
             {
-                filePath.MustBeValidFileName();
+                fileName.MustBeValidFileName();
 
                 Assert.Fail();
             }
             catch (ArgumentException ex)
             {
                 Assert.AreEqual("Value must be a valid file name.", ex.Message);
+            }
+
+            try
+            {
+                fileName.MustBeValidFileName(() => throw new InvalidOperationException("Test."));
+
+                Assert.Fail();
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual("Test.", ex.Message);
             }
         }
 
@@ -233,17 +288,28 @@ namespace DefensiveProgrammingFramework.Test.Files
         [DataRow("")]
         [DataRow("file>1.exe")]
         [DataRow("file|1.ex'")]
-        public void MustBeValidFilePathFail(string filePath)
+        public void MustBeValidFilePathFail(string fileName)
         {
             try
             {
-                filePath.MustBeValidFileName();
+                fileName.MustBeValidFileName();
 
                 Assert.Fail();
             }
             catch (ArgumentException ex)
             {
                 Assert.AreEqual("Value must be a valid file name.", ex.Message);
+            }
+
+            try
+            {
+                fileName.MustBeValidFileName(() => throw new InvalidOperationException("Test."));
+
+                Assert.Fail();
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual("Test.", ex.Message);
             }
         }
 

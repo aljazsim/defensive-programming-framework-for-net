@@ -16,14 +16,22 @@ namespace DefensiveProgrammingFramework
         /// Returns original value if the specified value is not an absolute directory path; otherwise throws a new ArgumentException.
         /// </summary>
         /// <param name="value">The value.</param>
+        /// <param name="errorHandler">The error handler.</param>
         /// <returns>
         /// The original value if the specified value is not an absolute directory path; otherwise throws a new ArgumentException.
         /// </returns>
-        public static string CannotBeAbsoluteDirectoryPath(this string value)
+        public static string CannotBeAbsoluteDirectoryPath(this string value, Action errorHandler = null)
         {
             if (value.IsAbsoluteDirectoryPath())
             {
-                throw new ArgumentException("Value cannot be an absolute directory path.");
+                if (errorHandler.IsNull())
+                {
+                    throw new ArgumentException("Value cannot be an absolute directory path.");
+                }
+                else
+                {
+                    errorHandler();
+                }
             }
 
             return value;
@@ -33,14 +41,22 @@ namespace DefensiveProgrammingFramework
         /// Returns original value if the specified value not is an absolute file path; otherwise throws a new ArgumentException.
         /// </summary>
         /// <param name="value">The value.</param>
+        /// <param name="errorHandler">The error handler.</param>
         /// <returns>
         /// The original value if the specified value not is an absolute file path; otherwise throws a new ArgumentException.
         /// </returns>
-        public static string CannotBeAbsoluteFilePath(this string value)
+        public static string CannotBeAbsoluteFilePath(this string value, Action errorHandler = null)
         {
             if (value.IsAbsoluteFilePath())
             {
-                throw new ArgumentException("Value cannot be an absolute file path.");
+                if (errorHandler.IsNull())
+                {
+                    throw new ArgumentException("Value cannot be an absolute file path.");
+                }
+                else
+                {
+                    errorHandler();
+                }
             }
 
             return value;
@@ -50,14 +66,22 @@ namespace DefensiveProgrammingFramework
         /// Returns original value if the specified value is not an empty directory path; otherwise throws a new ArgumentException.
         /// </summary>
         /// <param name="value">The value.</param>
+        /// <param name="errorHandler">The error handler.</param>
         /// <returns>
         /// The original value if the specified value is not an empty directory path; otherwise throws a new ArgumentException.
         /// </returns>
-        public static string CannotBeEmptyDirectory(this string value)
+        public static string CannotBeEmptyDirectory(this string value, Action errorHandler = null)
         {
             if (value.IsEmptyDirectory())
             {
-                throw new ArgumentException("Value cannot be an empty directory.");
+                if (errorHandler.IsNull())
+                {
+                    throw new ArgumentException("Value cannot be an empty directory.");
+                }
+                else
+                {
+                    errorHandler();
+                }
             }
 
             return value;
@@ -67,14 +91,22 @@ namespace DefensiveProgrammingFramework
         /// Returns original value if the specified value is not a valid directory path; otherwise throws a new ArgumentException.
         /// </summary>
         /// <param name="value">The value.</param>
+        /// <param name="errorHandler">The error handler.</param>
         /// <returns>
         /// The original value if the specified value is not a valid directory path; otherwise throws a new ArgumentException.
         /// </returns>
-        public static string CannotBeValidDirectoryPath(this string value)
+        public static string CannotBeValidDirectoryPath(this string value, Action errorHandler = null)
         {
             if (value.IsValidDirectoryPath())
             {
-                throw new ArgumentException("Value cannot be a valid directory path.");
+                if (errorHandler.IsNull())
+                {
+                    throw new ArgumentException("Value cannot be a valid directory path.");
+                }
+                else
+                {
+                    errorHandler();
+                }
             }
 
             return value;
@@ -84,14 +116,22 @@ namespace DefensiveProgrammingFramework
         /// Returns original value if the specified value is not a valid file name; otherwise throws a new ArgumentException.
         /// </summary>
         /// <param name="value">The value.</param>
+        /// <param name="errorHandler">The error handler.</param>
         /// <returns>
         /// The original value if the specified value is not a valid file name; otherwise throws a new ArgumentException.
         /// </returns>
-        public static string CannotBeValidFileName(this string value)
+        public static string CannotBeValidFileName(this string value, Action errorHandler = null)
         {
             if (value.IsValidFileName())
             {
-                throw new ArgumentException("Value cannot be a valid file name.");
+                if (errorHandler.IsNull())
+                {
+                    throw new ArgumentException("Value cannot be a valid file name.");
+                }
+                else
+                {
+                    errorHandler();
+                }
             }
 
             return value;
@@ -101,14 +141,22 @@ namespace DefensiveProgrammingFramework
         /// Returns original value if the specified value is not a valid file path; otherwise throws a new ArgumentException.
         /// </summary>
         /// <param name="value">The value.</param>
+        /// <param name="errorHandler">The error handler.</param>
         /// <returns>
         /// The original value if the specified value is not a valid file path; otherwise throws a new ArgumentException.
         /// </returns>
-        public static string CannotBeValidFilePath(this string value)
+        public static string CannotBeValidFilePath(this string value, Action errorHandler = null)
         {
             if (value.IsValidFilePath())
             {
-                throw new ArgumentException("Value cannot be a valid file path.");
+                if (errorHandler.IsNull())
+                {
+                    throw new ArgumentException("Value cannot be a valid file path.");
+                }
+                else
+                {
+                    errorHandler();
+                }
             }
 
             return value;
@@ -118,14 +166,22 @@ namespace DefensiveProgrammingFramework
         /// Returns original value if the specified directory does not exist; otherwise throws a new ArgumentException.
         /// </summary>
         /// <param name="value">The value.</param>
+        /// <param name="errorHandler">The error handler.</param>
         /// <returns>
         /// The original value if the specified directory does not exist; otherwise throws a new ArgumentException.
         /// </returns>
-        public static string CannotDirectoryExist(this string value)
+        public static string CannotDirectoryExist(this string value, Action errorHandler = null)
         {
             if (value.DoesDirectoryExist())
             {
-                throw new ArgumentException("Directory cannot exist.");
+                if (errorHandler.IsNull())
+                {
+                    throw new ArgumentException("Directory cannot exist.");
+                }
+                else
+                {
+                    errorHandler();
+                }
             }
 
             return value;
@@ -135,14 +191,22 @@ namespace DefensiveProgrammingFramework
         /// Returns original value if the specified file does not exist; otherwise throws a new ArgumentException.
         /// </summary>
         /// <param name="value">The value.</param>
+        /// <param name="errorHandler">The error handler.</param>
         /// <returns>
         /// The original value if the specified file does not exist; otherwise throws a new ArgumentException.
         /// </returns>
-        public static string CannotFileExist(this string value)
+        public static string CannotFileExist(this string value, Action errorHandler = null)
         {
             if (value.DoesFileExist())
             {
-                throw new ArgumentException("File cannot exist.");
+                if (errorHandler.IsNull())
+                {
+                    throw new ArgumentException("File cannot exist.");
+                }
+                else
+                {
+                    errorHandler();
+                }
             }
 
             return value;

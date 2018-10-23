@@ -65,6 +65,17 @@ namespace DefensiveProgrammingFramework.Test.Objects
             {
                 Assert.AreEqual($"Value must be between {min} and {max}.", ex.Message);
             }
+
+            try
+            {
+                value.MustBeBetween(min, max, inclusive, () => throw new InvalidOperationException("Test."));
+
+                Assert.Fail();
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual("Test.", ex.Message);
+            }
         }
 
         [TestMethod]
@@ -110,6 +121,17 @@ namespace DefensiveProgrammingFramework.Test.Objects
             {
                 Assert.AreEqual("Value must be equal to None.", ex.Message);
             }
+
+            try
+            {
+                1.MustBeDefault(() => throw new InvalidOperationException("Test."));
+
+                Assert.Fail();
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual("Test.", ex.Message);
+            }
         }
 
         [DataRow(null, null)]
@@ -137,6 +159,17 @@ namespace DefensiveProgrammingFramework.Test.Objects
             {
                 Assert.AreEqual($"Value must be equal to {value2}.", ex.Message);
             }
+
+            try
+            {
+                value1.MustBeEqualTo(value2, () => throw new InvalidOperationException("Test."));
+
+                Assert.Fail();
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual("Test.", ex.Message);
+            }
         }
 
         [DataRow("aaa")]
@@ -154,6 +187,17 @@ namespace DefensiveProgrammingFramework.Test.Objects
             catch (ArgumentException ex)
             {
                 Assert.AreEqual("Expression must be true.", ex.Message);
+            }
+
+            try
+            {
+                value.MustBe(x => false, () => throw new InvalidOperationException("Test."));
+
+                Assert.Fail();
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual("Test.", ex.Message);
             }
         }
 
@@ -189,6 +233,21 @@ namespace DefensiveProgrammingFramework.Test.Objects
             catch (ArgumentException ex)
             {
                 Assert.AreEqual($"Value must be greater than {minValue}.", ex.Message);
+            }
+
+            try
+            {
+                value.MustBeGreaterThan(minValue, () => throw new InvalidOperationException("Test."));
+
+                Assert.Fail();
+            }
+            catch (ArgumentNullException ex)
+            {
+                Assert.AreEqual("Value cannot be null.", ex.Message);
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual("Test.", ex.Message);
             }
         }
 
@@ -226,6 +285,21 @@ namespace DefensiveProgrammingFramework.Test.Objects
             {
                 Assert.AreEqual($"Value must be greater than or equal to {minValue}.", ex.Message);
             }
+
+            try
+            {
+                value.MustBeGreaterThanOrEqualTo(minValue, () => throw new InvalidOperationException("Test."));
+
+                Assert.Fail();
+            }
+            catch (ArgumentNullException ex)
+            {
+                Assert.AreEqual("Value cannot be null.", ex.Message);
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual("Test.", ex.Message);
+            }
         }
 
         [DataRow("", "a")]
@@ -261,6 +335,21 @@ namespace DefensiveProgrammingFramework.Test.Objects
             catch (ArgumentException ex)
             {
                 Assert.AreEqual($"Value must be less than {maxValue}.", ex.Message);
+            }
+
+            try
+            {
+                value.MustBeLessThan(maxValue, () => throw new InvalidOperationException("Test."));
+
+                Assert.Fail();
+            }
+            catch (ArgumentNullException ex)
+            {
+                Assert.AreEqual("Value cannot be null.", ex.Message);
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual("Test.", ex.Message);
             }
         }
 
@@ -299,6 +388,21 @@ namespace DefensiveProgrammingFramework.Test.Objects
             {
                 Assert.AreEqual($"Value must be less than or equal to {maxValue}.", ex.Message);
             }
+
+            try
+            {
+                value.MustBeLessThanOrEqualTo(maxValue, () => throw new InvalidOperationException("Test."));
+
+                Assert.Fail();
+            }
+            catch (ArgumentNullException ex)
+            {
+                Assert.AreEqual("Value cannot be null.", ex.Message);
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual("Test.", ex.Message);
+            }
         }
 
         [DataRow(null)]
@@ -323,6 +427,17 @@ namespace DefensiveProgrammingFramework.Test.Objects
             {
                 Assert.AreEqual($"Value must be null.", ex.Message);
             }
+
+            try
+            {
+                value.MustBeNull(() => throw new InvalidOperationException("Test."));
+
+                Assert.Fail();
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual("Test.", ex.Message);
+            }
         }
 
         [DataRow("a", typeof(string))]
@@ -340,7 +455,7 @@ namespace DefensiveProgrammingFramework.Test.Objects
         [DataRow(1, typeof(double))]
         [DataRow(Math.PI, typeof(IEnumerable))]
         [DataTestMethod]
-        public void MustBeOfTypeFail(object value, Type type)
+        public void MustBeTypeOfFail(object value, Type type)
         {
             try
             {
@@ -355,6 +470,21 @@ namespace DefensiveProgrammingFramework.Test.Objects
             catch (ArgumentException ex)
             {
                 Assert.AreEqual($"Value must be of type {type.Name}.", ex.Message);
+            }
+
+            try
+            {
+                value.MustBeTypeOf(type, () => throw new InvalidOperationException("Test."));
+
+                Assert.Fail();
+            }
+            catch (ArgumentNullException ex)
+            {
+                Assert.AreEqual("Value cannot be null.", ex.Message);
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual("Test.", ex.Message);
             }
         }
 
@@ -425,6 +555,21 @@ namespace DefensiveProgrammingFramework.Test.Objects
             {
                 Assert.AreEqual($"Value must be subtype of {type.Name}.", ex.Message);
             }
+
+            try
+            {
+                value.MustBeSubTypeOf(type, () => throw new InvalidOperationException("Test."));
+
+                Assert.Fail();
+            }
+            catch (ArgumentNullException ex)
+            {
+                Assert.AreEqual("Value cannot be null.", ex.Message);
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual("Test.", ex.Message);
+            }
         }
 
         [DataRow("a", "a")]
@@ -472,6 +617,17 @@ namespace DefensiveProgrammingFramework.Test.Objects
             catch (ArgumentNullException ex)
             {
                 Assert.AreEqual("Value cannot be null.", ex.Message);
+            }
+
+            try
+            {
+                "123".MustMatch(new Regex(@"^[a-z]+$"), () => throw new InvalidOperationException("Test."));
+
+                Assert.Fail();
+            }
+            catch (InvalidOperationException ex)
+            {
+                Assert.AreEqual("Test.", ex.Message);
             }
         }
 

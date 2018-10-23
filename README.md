@@ -3,7 +3,7 @@
 
 # Defensive programming framework for .NET Framework
 
-Defensive programing is a programming style that practices thorough validation of method input parameters resulting in robust code that allows method execution only in case of valid input or terminates it otherwise. 
+Defensive programing is a programming style that practices thorough validation of method input parameters resulting in robust code that allows method execution only in case of valid input or terminates it otherwise.
 
 Despite the benefits most software developers choose to skip this step, since it requires extra time and effort to validate input, inflates code and makes methods harder to understand and more difficult to maintain.
 
@@ -73,13 +73,13 @@ public void Write(byte[] buffer, int startIndex, byte[] data)
     // actual execution code
 }
 ```
-As evident from the examples method input validation with defensive programming framework is shorter and clearer than the original one. 
+As evident from the examples method input validation with defensive programming framework is shorter and clearer than the original one.
 
 ## Validation types
 Validation can be either **unconditional** and **optional**.
 
 ## Unconditional validation
-Failing unconditional validation results in termination of execution by throwing an ArgumentException. There are two forms of unconditional validation: conditions that must result in true and conditions that cannot result in true. 
+Failing unconditional validation results in termination of execution by throwing an ArgumentException. There are two forms of unconditional validation: conditions that must result in true and conditions that cannot result in true.
 
 ### Must conditions
 Must conditions specify that the result of the condition must be valid or true, otherwise execution will terminate.
@@ -150,7 +150,7 @@ filePath.WhenIsNotAbsoluteFilePath(Path.GetFullPath(filePath));
 ```
 ## Combining conditions
 Conditions can be chained together:
- 
+
  ```csharp
 filePath = filePath.CannotBeNullOrEmpty() // file path must be specified
                     .CannotBe(x => filePath.Intersect(Path.GetInvalidFileNameChars()).Any()) // file path must be a valid
@@ -188,6 +188,21 @@ url.IsNotNull().Then(() => port.MustBeBetween(IPEndPoint.MinPort, IPEndPoint.Max
 url.StartsWith("http").Then(() => port.MustEqual(443));
 ```
 
+## Substituting validation failure handling
+If there's a need to change the default validation failure handling, we can supply the Must and Cannot methods with an optional error handling delegate:
+
+```csharp
+[HttpGet]
+public decimal GetItemPrice(long itemId)
+{
+    // input validation
+    itemId.MustBeGreaterThanOrEqualTo(0, () => throw new HttpResponseException(HttpStatusCode.BadRequest));
+
+    // actual execution code
+    ...
+}
+```
+
 ## Naming convention
 All validation methods exist in must, cannot, when, when not, affirmative and negative combination and follow the following naming convention:
 
@@ -197,7 +212,7 @@ All validation methods exist in must, cannot, when, when not, affirmative and ne
  - When not methods start with "When + Condition + Not",
  - Affirmative utility methods start "Is", "Does" or "Contains",
  - Negative utility methods start with "IsNot", "DoesNot" or "ContainsNot".
- 
+
 ## List of extension methods
 
 ### Object extension methods:
@@ -244,12 +259,12 @@ All validation methods exist in must, cannot, when, when not, affirmative and ne
 # Installation
 Run the following command in your Package Manager Console in Visual Studio:
 ```csharp
-Install-Package DefensiveProgrammingFramework 
+Install-Package DefensiveProgrammingFramework
 ```
 Or just simply search for DefensiveProgrammingFramework in NuGet package manager in Visual Studio. The NuGet package is avaliable for **.NET Standard 2.0**.
 
 # Usage
-Simply include the DefensiveProgrammingFramework namespace in the source file and you'll be able to use the extension methods.   
+Simply include the DefensiveProgrammingFramework namespace in the source file and you'll be able to use the extension methods.
 ```csharp
 using DefensiveProgrammingFramework;
 ```

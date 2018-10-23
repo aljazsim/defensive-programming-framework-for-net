@@ -245,7 +245,7 @@ namespace DefensiveProgrammingFramework
             if (!typeof(T).IsValueType)
             {
                 return set.Any(x => (value != null && value.IsEqualTo(x)) ||
-                                      (value == null && x == null));
+                                    (value == null && x == null));
             }
             else
             {

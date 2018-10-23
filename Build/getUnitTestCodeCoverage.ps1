@@ -2,7 +2,7 @@ $ErrorPreference = 'Stop'
 
 $vsTestConsole = "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\Extensions\TestPlatform\vstest.console.exe"
 $openCoverConsole = "..\Packages\OpenCover.4.6.519\tools\OpenCover.Console.exe"
-$reportGenerator = "..\Packages\ReportGenerator.3.1.2\tools\ReportGenerator.exe"
+$reportGenerator = "..\Packages\ReportGenerator.4.0.0\tools\net47\ReportGenerator.exe"
 $msbuild = "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild.exe"
 
 $solutionFilePath = "..\Source\DefensiveProgrammingFramework.sln";

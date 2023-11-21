@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DefensiveProgrammingFramework.Test.Files
 {
@@ -184,12 +182,12 @@ namespace DefensiveProgrammingFramework.Test.Files
             }
             catch (ArgumentException ex)
             {
-                Assert.AreEqual("Value must be a valid directory path.", ex.Message);
+                Assert.AreEqual("Value cannot be an empty directory.", ex.Message);
             }
         }
 
         [DataRow("")]
-        [DataRow("file>1.exe")]
+        [DataRow("file\t1.exe")]
         [DataRow("file|1.ex'")]
         [DataTestMethod]
         public void CannotBeValidDirectoryPath(string filePath)
@@ -273,7 +271,7 @@ namespace DefensiveProgrammingFramework.Test.Files
         }
 
         [DataRow("")]
-        [DataRow("file>1.exe")]
+        [DataRow("file\t1.exe")]
         [DataRow("file|1.ex'")]
         [DataTestMethod]
         public void CannotBeValidFilePath(string filePath)

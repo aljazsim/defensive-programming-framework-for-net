@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DefensiveProgrammingFramework.Test.Files
 {
@@ -65,7 +63,7 @@ namespace DefensiveProgrammingFramework.Test.Files
         [TestMethod]
         public void MustBeEmptyDirectoryFail2()
         {
-            string directoryPath = @".\Tmp5<";
+            string directoryPath = @".\Tmp5|";
 
             try
             {
@@ -203,7 +201,7 @@ namespace DefensiveProgrammingFramework.Test.Files
         }
 
         [DataRow("")]
-        [DataRow("file>1.exe")]
+        [DataRow("file\t1.exe")]
         [DataRow("file|1.ex'")]
         [DataTestMethod]
         public void MustBeValidDirectoryPathFail(string directoryPath)

@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DefensiveProgrammingFramework.Test.Files
 {
@@ -137,7 +135,7 @@ namespace DefensiveProgrammingFramework.Test.Files
         [DataRow(@"C:\Users\User1\source\repos\WpfApp1\WpfApp1\bin\Debug\file.exe", "aaa", true)]
         [DataRow("exe.file", "aaa", true)]
         [DataRow("exe.sdfsfsdfsdfsdf", "aaa", true)]
-        [DataRow("file>1.exe", "aaa", false)]
+        [DataRow("file\t1.exe", "aaa", false)]
         [DataRow("file|1.ex'", "aaa", false)]
         [DataTestMethod]
         public void WhenIsValidDirectoryPath(string filePath, string defaultValue, bool expected)
@@ -168,7 +166,7 @@ namespace DefensiveProgrammingFramework.Test.Files
         [DataRow("exe.file", "aaa", true)]
         [DataRow(@"C:\Users\User1\source\repos\WpfApp1\WpfApp1\bin\Debug\file.exe", "aaa", true)]
         [DataRow("exe.sdfsfsdfsdfsdf", "aaa", true)]
-        [DataRow("file>1.exe", "aaa", false)]
+        [DataRow("file\t1.exe", "aaa", false)]
         [DataRow("file|1.ex'", "aaa", false)]
         [DataTestMethod]
         public void WhenIsValidFilePath(string filePath, string defaultValue, bool expected)

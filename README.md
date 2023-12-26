@@ -1,4 +1,4 @@
-# Defensive programming framework for .NET
+# Defensive Programming Framework for .NET
 
 Defensive programming is a programming style that practices thorough validation of method input parameters resulting in robust code that allows method execution only in case of valid input or terminates it otherwise.
 
@@ -160,7 +160,6 @@ Example:
 - when a value does not belong a predefined set of values, substitute it with a default value.
 
 ```csharp
-
 path = path.WhenIsNot(x => x.Trim() == x, path.Trim());
 text = text.WhenDoesNotMatch(new Regex("^[0-9]$"), "0");
 letter = letter.WhenIsNotOneOf(new string[] { "a", "b", "c" }, "a");
@@ -205,7 +204,7 @@ Example:
 - if value A is greater than value B, then value B must be greater than value C
 
 ```csharp
-input.IsNotNull().Then(() => output.CannotBeNull);
+input.IsNotNull().Then(() => output.CannotBeNull());
 a.IsGreaterThan(b).Then(() => b.MustBeGreaterThan(c));
 url.IsNotNull().Then(() => port.MustBeBetween(IPEndPoint.MinPort, IPEndPoint.MaxPort));
 url.StartsWith("http").Then(() => port.MustEqual(443));

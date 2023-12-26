@@ -1,35 +1,31 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿namespace DefensiveProgrammingFramework;
 
-namespace DefensiveProgrammingFramework
+/// <summary>
+/// The helper extension methods.
+/// </summary>
+internal static class HelperExtensions
 {
+    #region Internal Methods
+
     /// <summary>
-    /// The helper extension methods.
+    /// Formats the specified list.
     /// </summary>
-    internal static class HelperExtensions
+    /// <typeparam name="T">The list item type.</typeparam>
+    /// <param name="list">The list.</param>
+    /// <returns>The formatted list.</returns>
+    internal static string Format<T>(this IEnumerable<T> list)
     {
-        #region Internal Methods
+        var max = 10;
 
-        /// <summary>
-        /// Formats the specified list.
-        /// </summary>
-        /// <typeparam name="T">The list item type.</typeparam>
-        /// <param name="list">The list.</param>
-        /// <returns>The formatted list.</returns>
-        internal static string Format<T>(this IEnumerable<T> list)
+        if (list.Count() > max)
         {
-            var max = 10;
-
-            if (list.Count() > max)
-            {
-                return $"[{ string.Join(", ", list.Take(max).Select(x => x.ToString())) }, ...]";
-            }
-            else
-            {
-                return $"[{ string.Join(", ", list.Select(x => x.ToString())) }]";
-            }
+            return $"[{string.Join(", ", list.Take(max).Select(x => x.ToString()))}, ...]";
         }
-
-        #endregion Internal Methods
+        else
+        {
+            return $"[{string.Join(", ", list.Select(x => x.ToString()))}]";
+        }
     }
+
+    #endregion Internal Methods
 }
